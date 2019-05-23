@@ -1,0 +1,20 @@
+Player
+	- id
+	- name
+	- ip
+	- score
+	- generator
+Generator
+	- id
+	- bot
+Bot
+	- id
+	- stat
+Stats
+	- id
+	- type
+	- degat
+	- speed degat
+	- hp
+	- speed deplacement
+	- spawn/sec
