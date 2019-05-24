@@ -5,7 +5,7 @@ Concepte de jeu:
 - 2 adversaires
 - 1 champs de bataille
 - chaque joueur controle des batiments
-- chaque batiment fait apparaitre des bots (+- nb de bits / secondes)
+- chaque batiment fait apparaitre des bots (+- nb de bots / secondes)
 - un batiment fait apparaitre un type de bot particulier
 - chaque joueur a un camp a defendre (nb de point de vie)
 - les bots s'affrontent independemment sur le champs de bataille
@@ -29,8 +29,3 @@ Types de bots:  [style de combat: *, degat coup: */10, coup par second */10, hp:
 ************************************
 
 > trouver bon equilibrage du jeu
-
-
-
-Front javascript (canvas ?)
-Back php (web service)

@@ -3946,7 +3946,7 @@
 											"font": "Arial;13;0",
 											"left": 853.5,
 											"top": 420.5,
-											"width": 141.51708984375,
+											"width": 141,
 											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFq2YZO1KSQDao="
@@ -5075,7 +5075,7 @@
 											"font": "Arial;13;0",
 											"left": 323,
 											"top": 132.5,
-											"width": 168.1962890625,
+											"width": 167,
 											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFq2ZCvPKrVei0="
@@ -5274,7 +5274,7 @@
 											"font": "Arial;13;0",
 											"left": 345.5,
 											"top": 604.5,
-											"width": 161.6962890625,
+											"width": 161,
 											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFq2ZTP661m7Zs="
@@ -6862,7 +6862,7 @@
 											"font": "Arial;13;0",
 											"left": 890.5,
 											"top": 564.5,
-											"width": 87.2890625,
+											"width": 86,
 											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFq2Z5tq8C4BaQ="
@@ -8411,7 +8411,7 @@
 											"font": "Arial;13;0",
 											"left": 719,
 											"top": 364.5,
-											"width": 72.15625,
+											"width": 72,
 											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFq2brfWdx86+o="
@@ -8951,7 +8951,7 @@
 											"top": 102,
 											"width": 535,
 											"height": 13,
-											"text": "bot-battlefield"
+											"text": "bot-battlefield-app"
 										},
 										{
 											"_type": "LabelView",
@@ -9079,9 +9079,9 @@
 											"font": "Arial;13;0",
 											"left": -176,
 											"top": -80,
-											"width": 116.32080078125,
+											"width": 142.33984375,
 											"height": 13,
-											"text": "(from bot-battlefield)"
+											"text": "(from bot-battlefield-app)"
 										},
 										{
 											"_type": "LabelView",
@@ -9504,9 +9504,9 @@
 											"font": "Arial;13;0",
 											"left": -152,
 											"top": -224,
-											"width": 116.32080078125,
+											"width": 142.33984375,
 											"height": 13,
-											"text": "(from bot-battlefield)"
+											"text": "(from bot-battlefield-app)"
 										},
 										{
 											"_type": "LabelView",
@@ -9611,7 +9611,7 @@
 											"top": -128,
 											"width": 116.32080078125,
 											"height": 13,
-											"text": "(from bot-battlefield)"
+											"text": "(from home)"
 										},
 										{
 											"_type": "LabelView",
@@ -9804,9 +9804,9 @@
 											"font": "Arial;13;0",
 											"left": -312,
 											"top": -384,
-											"width": 116.32080078125,
+											"width": 142.33984375,
 											"height": 13,
-											"text": "(from bot-battlefield)"
+											"text": "(from bot-battlefield-app)"
 										},
 										{
 											"_type": "LabelView",
@@ -9892,7 +9892,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFq2dFv0N96cqM="
 					},
-					"name": "bot-battlefield",
+					"name": "bot-battlefield-app",
 					"ownedElements": [
 						{
 							"_type": "UMLPackage",
@@ -10123,7 +10123,8 @@
 														"$ref": "AAAAAAFq2pVH6OQJUMw="
 													},
 													"name": "playerListComponent",
-													"visibility": "private"
+													"visibility": "private",
+													"type": ""
 												}
 											],
 											"operations": [
@@ -10291,7 +10292,8 @@
 												"$ref": "AAAAAAFq2oLzw+J/X88="
 											},
 											"name": "menuComponent",
-											"visibility": "private"
+											"visibility": "private",
+											"type": ""
 										},
 										{
 											"_type": "UMLAttribute",
@@ -10300,7 +10302,8 @@
 												"$ref": "AAAAAAFq2oLzw+J/X88="
 											},
 											"name": "opponentComponent",
-											"visibility": "private"
+											"visibility": "private",
+											"type": ""
 										},
 										{
 											"_type": "UMLAttribute",
@@ -10309,7 +10312,8 @@
 												"$ref": "AAAAAAFq2oLzw+J/X88="
 											},
 											"name": "waitingComponent",
-											"visibility": "private"
+											"visibility": "private",
+											"type": ""
 										},
 										{
 											"_type": "UMLAttribute",
@@ -10318,7 +10322,8 @@
 												"$ref": "AAAAAAFq2oLzw+J/X88="
 											},
 											"name": "popUpComponent",
-											"visibility": "private"
+											"visibility": "private",
+											"type": ""
 										}
 									]
 								}
