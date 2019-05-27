@@ -1,9 +1,19 @@
-import {PlayerListSelection} from "./player-list/player-list.component";
+import { PlayerListComponent } from "./player-list/player-list.component";
+import { Component } from "../../../component";
+import html from "./opponent-selection.component.html";
 
-export class OpponentSelection {
-    constructor () {
-        super();
+export class OpponentSelectionComponent extends Component {
 
-        playerListSelection = new PlayerListSelection();
+    constructor() {
+        super(
+            `opponent`,
+            html,
+            ``
+        );
+
+        this.playerListComponent = new PlayerListComponent();
+
+        this.components.push(this.playerListComponent);
     }
+
 }

@@ -1,20 +1,24 @@
 import { Component } from "../component";
 import { HomeComponent } from "./home/home.component";
-import { Login } from "./login/login.component";
-import { Game } from "./game/game.component";
+import { LoginComponent } from "./login/login.component";
+import { GameComponent } from "./game/game.component";
+import html from "./app.component.html";
+//import "./app.component.scss";
 
 export class AppComponent extends Component {
 
     constructor() {
         super(
             `app`,
-            `<p>truc</p>`,
+            html,
             `p{color: red}`
         );
 
-        homeComponent = new HomeComponent();
-        login = new Login();
-        game = new Game();
+        this.homeComponent = new HomeComponent();
+        this.loginComponent = new LoginComponent();
+        this.gameComponent = new GameComponent();
+
+        this.components.push(this.homeComponent);
 
     }
 
