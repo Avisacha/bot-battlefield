@@ -3,7 +3,6 @@ import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { GameComponent } from "./game/game.component";
 import html from "./app.component.html";
-//import "./app.component.scss";
 
 export class AppComponent extends Component {
 
