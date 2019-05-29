@@ -9,12 +9,20 @@ export class Router {
     }
 
     static navigate(url, parameters) {
+        
         for (let route of routes) {
             if (route.url === url) {
                 const element = window.document.querySelector("router");
-                element.innerHTML = `<${route.component.balise}></${route.component.balise}>`;
+
+                if (element.firstChild) {
+                    element.removeChild(element.firstChild);
+                }
+
+                const elementBalise = window.document.createElement(route.component.balise);
+                element.appendChild(elementBalise);
 
                 route.component.display();
+
                 return true;
             }
         }
