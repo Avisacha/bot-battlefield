@@ -1,8 +1,10 @@
 import { MenuComponent } from "./menu/menu.component";
-import { OpponentSelectionComponent } from "./opponent-selection/opponent-selection.component";
+import { OpponentSelectionComponent }
+    from "./opponent-selection/opponent-selection.component";
 import { AppComponent } from "../app.component";
 import { Component } from "../../component";
 import html from "./home.component.html";
+import { Router } from "../../route/router";
 
 export class HomeComponent extends Component {
     constructor() {
@@ -20,4 +22,20 @@ export class HomeComponent extends Component {
 
     }
 
+    display() {
+        super.display();
+        window.document.querySelector(".eHome").addEventListener(
+            "click",
+            () => this.event()
+        );
+    }
+
+    event() {
+        Router.navigate("/login");
+    }
+
 }
+
+// console.log(this);
+// this.components = [];
+// this.components.push(this.loginComponent);

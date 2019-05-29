@@ -16,6 +16,7 @@ export class Component {
         for (const iterator of this.components) {
             iterator.display();
         }
+
     }
 
 }
