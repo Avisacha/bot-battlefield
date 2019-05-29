@@ -1,22 +1,21 @@
+import html from "./login.component.html";
 import { Component } from "../../component";
-import html from './login.component.html';
 import { Router } from "../../route/router";
 
-export class LoginComponent extends Component {
-    constructor() {
-        super(
-            "login",
-            html,
-        );
-    }
-    display() {
-        super.display();
-        window.document.querySelector("login .eHome")
-            .addEventListener("click", () => Router.navigate("/home"));
+export class LoginComponent extends Component{
+    constructor () {
+        super(`login`, html);
     }
 
-    monClick() {
-        console.log("click");
-        console.log(this);
+    display() {
+        super.display();
+        window.document.querySelector(".eLogin").addEventListener(
+            "click",
+            () => this.event()
+        );
+    }
+
+    event() {
+        Router.navigate("/home");
     }
 }

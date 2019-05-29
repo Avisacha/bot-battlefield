@@ -29,40 +29,45 @@ module.exports = {
                 ]
             },
             {
-            test: /\.(woff|woff2|ttf|eot)$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {},
-                },
-            ],
-        },
-    ]
-},
-
+                test: /\.(woff|woff2|ttf|eot)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
+            }
+        ]
+    },
     watchOptions: {
-    ignored: [
-        /node_modules/,
-        /test/
+        ignored: [
+            /node_modules/,
+            /test/
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin(
+            {
+                test: /\.(woff|woff2|ttf|eot)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
+            },
+        ),
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            files: [
+                'index.html',
+            ],
+            server: {
+                baseDir: [
+                    './'
+                ]
+            }
+        })
     ]
-},
-plugins: [
-    new MiniCssExtractPlugin(
-        {
-            filename: 'index.css',
-        }
-    ),
-    new BrowserSyncPlugin({
-        host: 'localhost',
-        port: 3000,
-        files: [
-            'index.html',
-        ],
-        server: {
-            baseDir: [
-                './'
-            ]
-        }
-    })
-]
 };

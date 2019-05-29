@@ -2,8 +2,13 @@ Player
 	- id
 	- name
 	- ip
-	- score
 	- generator
+	- score
+Score (note: sera calculé avec le calcul suivant, score = (nb parties jouées * 10) * (nb parties gagnés / nb parties jouées))
+	- id
+	- nb parties jouées
+	- nb parties gagnés
+	- ...
 Generator
 	- id
 	- bot

@@ -44,6 +44,7 @@
   font-feature-settings: 'liga';
 }
 
+<<<<<<< HEAD
 app > p {
   color: blue; }
 
@@ -52,4 +53,14 @@ opponent-selection > p {
 
 player-list > p {
   color: tomato; }
+=======
+app p {
+  color: red; }
+
+home p {
+  color: blue; }
+
+menu p {
+  color: green; }
+>>>>>>> fb75028e6284ef191b8c021b5884baf8d49195eb
 

@@ -1,17 +1,19 @@
-import {PlayerListComponent} from "./player-list/player-list.component";
+import { PlayerListComponent } from "./player-list/player-list.component";
 import { Component } from "../../../component";
-import html from './opponent-selection.component.html';
+import html from "./opponent-selection.component.html";
 
-export class OpponentSelectionComponent extends Component{
-    constructor () {
-        super(   
-        `opponent-selection`,
-        html,
-        `p{color: red}`
+export class OpponentSelectionComponent extends Component {
+
+    constructor() {
+        super(
+            `opponent`,
+            html,
+            ``
         );
 
-        this.components.push(
-            new PlayerListComponent(),
-        )
+        this.playerListComponent = new PlayerListComponent();
+
+        this.components.push(this.playerListComponent);
     }
+
 }
