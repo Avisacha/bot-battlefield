@@ -27,32 +27,42 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
-            }
-        ]
-    },
-    watchOptions: {
-        ignored: [
-            /node_modules/,
-            /test/
-        ]
-    },
-    plugins: [
-        new MiniCssExtractPlugin(
+            },
             {
-                filename: 'index.css',
-            }
-        ),
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            files: [
-                'index.html',
+            test: /\.(woff|woff2|ttf|eot)$/,
+            use: [
+                {
+                    loader: 'file-loader',
+                    options: {},
+                },
             ],
-            server: {
-                baseDir: [
-                    './'
-                ]
-            }
-        })
+        },
     ]
+},
+
+    watchOptions: {
+    ignored: [
+        /node_modules/,
+        /test/
+    ]
+},
+plugins: [
+    new MiniCssExtractPlugin(
+        {
+            filename: 'index.css',
+        }
+    ),
+    new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 3000,
+        files: [
+            'index.html',
+        ],
+        server: {
+            baseDir: [
+                './'
+            ]
+        }
+    })
+]
 };
