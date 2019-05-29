@@ -1,4 +1,4 @@
-import { Component } from "../component";
+import { Component } from "../component/component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { GameComponent } from "./game/game.component";
@@ -21,4 +21,5 @@ export class AppComponent extends Component {
         super.display();
         Router.navigate("/login");
     }
+
 }

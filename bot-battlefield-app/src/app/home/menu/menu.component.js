@@ -1,4 +1,4 @@
-import { Component } from "../../../component";
+import { Component } from "../../../component/component";
 import html from "./menu.component.html";
 
 export class MenuComponent extends Component {

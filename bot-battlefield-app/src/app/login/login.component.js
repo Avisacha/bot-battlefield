@@ -1,5 +1,5 @@
 import html from "./login.component.html";
-import { Component } from "../../component";
+import { Component } from "../../component/component";
 import { Router } from "../../route/router";
 
 export class LoginComponent extends Component{

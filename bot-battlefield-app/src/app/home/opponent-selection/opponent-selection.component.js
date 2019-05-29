@@ -1,5 +1,5 @@
 import { PlayerListComponent } from "./player-list/player-list.component";
-import { Component } from "../../../component";
+import { Component } from "../../../component/component";
 import html from "./opponent-selection.component.html";
 
 export class OpponentSelectionComponent extends Component {

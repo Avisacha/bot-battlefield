@@ -48,14 +48,8 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(
             {
-                test: /\.(woff|woff2|ttf|eot)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {},
-                    },
-                ],
-            },
+                filename: 'index.css',
+            }
         ),
         new BrowserSyncPlugin({
             host: 'localhost',

@@ -2,7 +2,7 @@ import { MenuComponent } from "./menu/menu.component";
 import { OpponentSelectionComponent }
     from "./opponent-selection/opponent-selection.component";
 import { AppComponent } from "../app.component";
-import { Component } from "../../component";
+import { Component } from "../../component/component";
 import html from "./home.component.html";
 import { Router } from "../../route/router";
 
