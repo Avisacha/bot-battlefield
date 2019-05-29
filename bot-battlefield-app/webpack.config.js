@@ -27,6 +27,15 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(woff|woff2|ttf|eot)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
             }
         ]
     },
@@ -39,8 +48,14 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(
             {
-                filename: 'index.css',
-            }
+                test: /\.(woff|woff2|ttf|eot)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {},
+                    },
+                ],
+            },
         ),
         new BrowserSyncPlugin({
             host: 'localhost',
