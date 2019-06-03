@@ -14,14 +14,14 @@ export class LoginComponent extends Component {
         super.display();
         window.document.querySelector(".eStart").addEventListener(
             "click",
-            () => this.event()
+            () => this.onStart()
         );
         this.nickname = window.document.querySelector("#nickname");
         nickname.pattern = this.regex;
         window.componentHandler.upgradeDom();
     }
 
-    event() {
+    onStart() {
         const regexObj = new window.RegExp(this.regex);
         if (!regexObj.test(nickname.value)) {
             alert("nickname incorrect");
@@ -34,8 +34,8 @@ export class LoginComponent extends Component {
     }
 
     onReadLoad(data) {
-        for (value in data.players) {
-            if (value === this.nickname) {
+        for (player in data.players) {
+            if (player === this.nickname) {
                 alert("nickname existant");
                 return;
             }
@@ -55,7 +55,7 @@ export class LoginComponent extends Component {
     }
 
     onCreateError() {
-
+        alert("Error ", error);
     }
 
 }
