@@ -16,6 +16,15 @@ export class LoginComponent extends Component {
             "click",
             () => this.onStart()
         );
+        window.document.querySelector("#nickname").addEventListener(
+            "keypress",
+            (e) => {
+                var key = e.which || e.keyCode;
+                if (key === 13) {
+                    this.onStart();
+                }
+            }
+        );
         this.nickname = window.document.querySelector("#nickname");
         nickname.pattern = this.regex;
         window.componentHandler.upgradeDom();
@@ -34,28 +43,33 @@ export class LoginComponent extends Component {
     }
 
     onReadLoad(data) {
-        for (player in data.players) {
-            if (player === this.nickname) {
+        console.log(data.players);
+        for (const player of data.players) {
+            if (player.name === this.nickname.value) {
                 alert("nickname existant");
                 return;
             }
         }
-        alert(data.players);
-        PlayerService.create()
+        // //alert(data.players);
+        PlayerService.create(this.nickname.value)
             .then((data) => this.onCreateLoad(data))
             .catch((error) => this.onCreateError(error));
     }
 
     onReadError(error) {
-        alert("Error ", error);
+        alert("onReadError");
+        console.log(error);
+
     }
 
-    onCreateLoad() {
+    onCreateLoad(error) {
+        alert("onCreateLoad ", error);
+
         Router.navigate("/home", nickname.value);
     }
 
-    onCreateError() {
-        alert("Error ", error);
+    onCreateError(error) {
+        alert("onCreateError ", error);
     }
 
 }
