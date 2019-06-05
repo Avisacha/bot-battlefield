@@ -9,12 +9,11 @@ export class PlayerService {
     constructor() {
     }
 
-    static create(data) {
+    static create(name) {
         const playerModel = new PlayerModel();
         playerModel.name = name;
-        data.players.push(playerModel);
+        response.players.push(playerModel);
         return new Promise((resolve, reject) => {
-            // response.players.push(data);
 
             const dataToSend = JSON.stringify(response);
 
@@ -31,8 +30,7 @@ export class PlayerService {
                     reject(req.status);
                     return;
                 }
-
-                resolve(dataToSend);
+                resolve(response);
             }
 
             req.open("PUT", `${jsonbin.url}${jsonbin.bins.players}`);
@@ -60,8 +58,7 @@ export class PlayerService {
                     playerModel.name = player.name;
                     playerModel.token = player.token;
                     playerModel.ready = player.ready;
-                    data.players.push(playerModel);
-
+                    response.players.push(playerModel);
                 }
                 // response = JSON.parse(req.response);
                 resolve(response);
@@ -69,7 +66,6 @@ export class PlayerService {
 
             req.open("GET", `${jsonbin.url}${jsonbin.bins.players}${jsonbin.version}`);
             req.setRequestHeader("secret-key", jsonbin.key);
-            //req.setRequestHeader("versioning", "false");
             req.send();
         });
     }
