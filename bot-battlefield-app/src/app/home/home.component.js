@@ -1,10 +1,10 @@
 import { MenuComponent } from "./menu/menu.component";
-import { OpponentSelectionComponent }
-    from "./opponent-selection/opponent-selection.component";
+import { OpponentSelectionComponent } from "./opponent-selection/opponent-selection.component";
 import { AppComponent } from "../app.component";
 import { Component } from "../../component/component";
 import html from "./home.component.html";
 import { Router } from "../../route/router";
+import { PlayerLocalStorageService } from "../../shared/services/player-local-storage.service";
 
 export class HomeComponent extends Component {
     constructor() {
@@ -20,10 +20,19 @@ export class HomeComponent extends Component {
         this.components.push(this.menuComponent);
         this.components.push(this.opponentSelectionComponent);
 
+        PlayerLocalStorageService.read()
+        .then((data) => {
+            if (!data) {
+                Router.navigate("/login");
+            }
+        })
+        .catch((error) => console.log(error));
+
     }
 
     display() {
         super.display();
+
         window.document.querySelector(".eHome").addEventListener(
             "click",
             () => this.event()

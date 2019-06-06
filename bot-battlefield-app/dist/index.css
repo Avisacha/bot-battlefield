@@ -81,9 +81,6 @@ dialog.fixed {
   top: 50%;
   transform: translate(0, -50%);
 }
-home p {
-  color: blue; }
-
 menu p {
   color: green; }
 

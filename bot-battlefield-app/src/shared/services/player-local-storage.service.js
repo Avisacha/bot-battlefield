@@ -2,7 +2,7 @@ const key = "player";
 
 export class PlayerLocalStorageService {
     constructor() {
-
+        this.response;
     }
 
     static create(playerJson) {
@@ -17,21 +17,21 @@ export class PlayerLocalStorageService {
             //     reject("player already exist");
             //     return;
             // }
-            console.log(JSON.stringify(playerJson[playerJson.length - 1]));
 
-            window.localStorage.setItem(key, JSON.stringify(playerJson[playerJson.length - 1]));
+            this.playerStringifyied = JSON.stringify(playerJson.players[playerJson.players.length - 1]);
+            window.localStorage.setItem(key, this.playerStringifyied);
             resolve();
         });
 
     }
 
-    static read(player) {
+    static read() {
         return new Promise((resolve, reject) => {
-            if (typeof (player) !== "string") {
+            if (typeof ("player") !== "string") {
                 reject("type is not a string");
             }
-            response = window.localStorage.getItem(player);
-            resolve(response);
+            this.response = window.localStorage.getItem("player");
+            resolve(this.response);
         });
     }
 

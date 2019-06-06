@@ -19,7 +19,7 @@ export class AppComponent extends Component {
 
     display() {
         super.display();
-        Router.navigate("/login");
+        Router.navigate("/home");
     }
 
 }
