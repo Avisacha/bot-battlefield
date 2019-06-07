@@ -4,7 +4,7 @@ import html from "./menu.component.html";
 export class MenuComponent extends Component {
     constructor() {
         super(
-            `menu`,
+            `menu-component`,
             html,
             ``);
     }

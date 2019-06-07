@@ -22,21 +22,21 @@ export class HomeComponent extends Component {
 
         PlayerLocalStorageService.read()
         .then((data) => {
-            if (!data) {
+            if (null === data) {
                 Router.navigate("/login");
+                return;
             }
         })
         .catch((error) => console.log(error));
-
     }
 
     display() {
         super.display();
 
-        window.document.querySelector(".eHome").addEventListener(
-            "click",
-            () => this.event()
-        );
+        // window.document.querySelector(".eHome").addEventListener(
+        //     "click",
+        //     () => this.event()
+        // );
     }
 
     event() {
@@ -44,7 +44,3 @@ export class HomeComponent extends Component {
     }
 
 }
-
-// console.log(this);
-// this.components = [];
-// this.components.push(this.loginComponent);

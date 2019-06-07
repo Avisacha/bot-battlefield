@@ -11,7 +11,7 @@ export class DialogComponent extends Component {
 
     display() {
         super.display();
-        this.dialog = document.querySelector('login dialog');
+        this.dialog = document.querySelector('dialog');
         dialogPolyfill.registerDialog(this.dialog);
     }
 
@@ -22,6 +22,7 @@ export class DialogComponent extends Component {
 
     dialogSetTitle(text) {
         const elementTitle = window.document.querySelector("dialog h3");
+        
         elementTitle.firstChild.nodeValue = text;
     }
 
@@ -45,6 +46,11 @@ export class DialogComponent extends Component {
         divElement.appendChild(formElement);
         formElement.appendChild(buttonElement);
         buttonElement.appendChild(textNode);
+    }
+
+    closeDialog() {
+        const dialogElement = window.document.querySelector("dialog");
+        dialogElement.parentNode.removeChild(dialogElement);
     }
 
     // onError(text) {

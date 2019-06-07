@@ -81,6 +81,31 @@ dialog.fixed {
   top: 50%;
   transform: translate(0, -50%);
 }
-menu p {
-  color: green; }
+home {
+  width: 100%;
+  display: block; }
+
+menu-component {
+  width: 100%;
+  display: block;
+  padding-bottom: 50px; }
+
+opponent {
+  width: 100%;
+  display: block; }
+
+player-list table {
+  margin: auto; }
+  player-list table td {
+    cursor: pointer; }
+    player-list table td:hover {
+      background: #7a7a7a; }
+
+player-list .button {
+  text-align: center; }
+
+player-list tbody {
+  display: block;
+  overflow-y: scroll;
+  max-height: 400px; }
 
