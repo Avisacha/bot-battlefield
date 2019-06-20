@@ -14,7 +14,6 @@ export class PlayerService {
         playerModel.name = name;
         response.players.push(playerModel);
         return new Promise((resolve, reject) => {
-
             const dataToSend = JSON.stringify(response);
 
             let req = new XMLHttpRequest();
@@ -64,8 +63,10 @@ export class PlayerService {
                 resolve(response);
             }
 
-            req.open("GET", `${jsonbin.url}${jsonbin.bins.players}${jsonbin.version}`);
-            req.setRequestHeader("secret-key", jsonbin.key);
+            
+            req.open("GET", `http://localhost:8000/players`);
+            // req.open("GET", `${jsonbin.url}${jsonbin.bins.players}${jsonbin.version}`);
+            // req.setRequestHeader("secret-key", jsonbin.key);
             req.send();
         });
     }

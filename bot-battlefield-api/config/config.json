@@ -1,0 +1,10 @@
+{
+  "database": {
+    "driver": "mysql",
+    "host": "localhost",
+    "dbname": "bot_battlefield",
+    "charset": "utf8",
+    "username": "root",
+    "passwd": ""
+  }
+}

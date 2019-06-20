@@ -1,0 +1,37 @@
+{
+  "player_show": {
+    "path": "/players/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
+    "action": "Api\\Controller\\PlayersController::show",
+    "methods": [
+      "GET"
+    ]
+  },
+  "player_show_all": {
+    "path": "/players",
+    "action": "Api\\Controller\\PlayersController::showAll",
+    "methods": [
+      "GET"
+    ]
+  },
+  "player_remove": {
+    "path": "/remove/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
+    "action": "Api\\Controller\\PlayersController::remove",
+    "methods": [
+      "GET"
+    ]
+  },
+  "player_create": {
+    "path": "/create/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
+    "action": "Api\\Controller\\PlayersController::create",
+    "methods": [
+      "GET"
+    ]
+  },
+  "opponents_show": {
+    "path": "/opponents",
+    "action": "Api\\Controller\\OpponentsController::show",
+    "methods": [
+      "GET"
+    ]
+  }
+}
