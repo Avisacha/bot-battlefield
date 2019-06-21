@@ -5,13 +5,13 @@ export class PlayerLocalStorageService {
         this.response;
     }
 
-    static create(playerJson) {
+    static create(playerJson) {        
         return new Promise((resolve, reject) => {
             //console.log(player);
 
             // if (typeof(playerJSon) !== "object") {
             //     reject("type is not an object");
-            //     return;
+            //     return;  
             // }
             // if (document.localStorage.getItem(key)) {
             //     reject("player already exist");
@@ -19,6 +19,7 @@ export class PlayerLocalStorageService {
             // }
 
             this.playerStringifyied = JSON.stringify(playerJson.players[playerJson.players.length - 1]);
+            
             window.localStorage.setItem(key, this.playerStringifyied);
             resolve();
         });

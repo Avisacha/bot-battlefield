@@ -19,6 +19,7 @@ class Response
         $this->setStatusCode(200);
         $this->setStatusText("OK");
         $this->setHeaders(Container::get(HeaderBag::class));
+        $this->addHeader("Access-Control-Allow-Origin", "*");
         $this->setBody("");
     }
 

@@ -29,7 +29,6 @@ try {
             $explode = explode("/", $request->getUri());
 
             if (!empty($match)) {
-
                 $response = $controller->{$controllerActionName}(... $match);
             } else {
                 $response = $controller->{$controllerActionName}();
@@ -53,6 +52,7 @@ try {
             ->setStatusText("Method not allowed");
     }
 }
+
 header($response->getVersionStatus());
 
 foreach ($response->getHeaders()->getHeaders() as $key => $value) {

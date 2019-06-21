@@ -16,6 +16,7 @@ class Container
 
         $reflectiveClass = self::$service[$className];
         $constructor = $reflectiveClass->getConstructor();
+        
         if (null != $constructor) {
             $params = $constructor->getParameters();
             if (0 < count($params)) {

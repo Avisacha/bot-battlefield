@@ -22,10 +22,8 @@ export class PlayerListComponent extends Component {
         this.dialog.dialogSetTitle("Loading players");
 
         PlayerService.read()
-        .then((data) => {
-            this.addPlayer(data);
-        })
-        .catch((error) => onReadError(error));
+            .then((data) => this.addPlayer(data))
+            .catch((error) => this.onReadError(error));
 
         document.addEventListener(
             "click",
@@ -73,7 +71,7 @@ export class PlayerListComponent extends Component {
         this.selectedElement = event.target.parentElement;
 
         if (this.selectedElement.nodeName !== "TR") {
-            console.log("Not a TR element");
+            // console.log("Not a TR element");
             return;
         }
 

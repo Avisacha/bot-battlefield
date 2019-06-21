@@ -36,9 +36,9 @@ class PlayersController extends Controller
         return $this->jsonResponse($data);
     }
 
-    public function create(string $name): Response
+    public function create(string $name)
     {
-        $data = new \stdClass();
+//        $data = new \stdClass();
         $player = Container::get(Players::class)
             ->setName($name)
             ->setToken(bin2hex(random_bytes(15)))
@@ -47,7 +47,6 @@ class PlayersController extends Controller
         $playerRepository = Container::get(PlayerRepository::class);
 
         try {
-            // trigger the catch if there is no player
             $playerRepository->getPlayer($name);
 
             $response = new Response();
@@ -55,13 +54,13 @@ class PlayersController extends Controller
                 ->setStatusCode(409)
                 ->setStatusText("Conflict");
 
-            return $response;
+//            return $response;
         } catch (\Exception $e) {
             $playerRepository->createPlayer($player);
             $getPlayer = $playerRepository->getPlayer($name);
-            $data->player = $getPlayer;
+//            $data->player = $getPlayer;
 
-            return $this->jsonResponse($data);
+//            return $this->jsonResponse($data);
         }
     }
 
@@ -87,6 +86,26 @@ class PlayersController extends Controller
             return $response;
         }
 
+    }
+
+    public function existingVerification(string $name): Response
+    {
+        $playerRepository = Container::get(PlayerRepository::class);
+        $response = new Response();
+        try {
+            $playerRepository->getPlayer($name);
+            $response->setVersion("1.1")
+                ->setStatusCode(200)
+                ->setStatusText("OK");
+            var_dump($response);
+            return $response;
+        } catch (\Exception $e) {
+            $response->setVersion("1.1")
+                ->setStatusCode(409)
+                ->setStatusText("Conflict");
+            var_dump($response);
+            return $response;
+        }
     }
 
 }

@@ -40,40 +40,55 @@ export class LoginComponent extends Component {
     onStart() {
         const regexObj = new window.RegExp(this.regex);
         if (!regexObj.test(nickname.value)) {
-            alert("nickname incorrect");
             this.nickname.focus();
             return;
         }
-        // console.log("coucou");
-        
+
         this.dialogComponent.show();
         this.dialogComponent.dialogSetTitle("Creating account");
-        PlayerService.read()
-            .then((data) => this.onReadLoad(data))
-            .catch((error) => this.onReadError(error));
+
+        PlayerService.existingVerify(this.nickname.value)
+            .then((data) => this.onVerificationLoad(data))
+            .catch((error) => this.onVerificationError(error));
+
+        // PlayerService.read()
+        //     .then((data) => this.onReadLoad(data))
+        //     .catch((error) => this.onReadError(error));
     }
 
-    onReadLoad(data) {
-        for (const player of data.players) {
-            if (player.name === this.nickname.value) {
-                this.dialogComponent.dialogSetTitle(`Nickname existant`);
-                this.dialogComponent.dialogRemoveSpinner();
-                this.dialogComponent.dialogSetCloseButton();
-                return;
-            }
+    onVerificationLoad(data) {
+        if (409 === data) {
+            this.dialogComponent.dialogSetTitle(`Nickname existant`);
+            this.dialogComponent.dialogRemoveSpinner();
+            this.dialogComponent.dialogSetCloseButton();
+            return;
         }
         PlayerService.create(this.nickname.value)
             .then((data) => this.onCreateLoad(data))
             .catch((error) => this.onCreateError(error));
     }
 
-    onReadError(error) {
-        this.dialogComponent.dialogSetTitle(`On Read Error ${error}`);
-        this.dialogComponent.dialogRemoveSpinner();
-        this.dialogComponent.dialogSetCloseButton();
+    // onReadLoad(data) {
+    //     for (const player of data.players) {
+    //         if (player.name === this.nickname.value) {
+    //             this.dialogComponent.dialogSetTitle(`Nickname existant`);
+    //             this.dialogComponent.dialogRemoveSpinner();
+    //             this.dialogComponent.dialogSetCloseButton();
+    //             return;
+    //         }
+    //     }
+    //     PlayerService.create(this.nickname.value)
+    //         .then((data) => this.onCreateLoad(data))
+    //         .catch((error) => this.onCreateError(error));
+    // }
 
-        console.log(error);
-    }
+    // onReadError(error) {
+    //     this.dialogComponent.dialogSetTitle(`On Read Error ${error}`);
+    //     this.dialogComponent.dialogRemoveSpinner();
+    //     this.dialogComponent.dialogSetCloseButton();
+
+    //     console.log(error);
+    // }
 
     onCreateLoad(player) {
         PlayerLocalStorageService.create(player)

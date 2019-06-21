@@ -21,15 +21,22 @@
     ]
   },
   "player_create": {
-    "path": "/create/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
+    "path": "/create_player/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
     "action": "Api\\Controller\\PlayersController::create",
     "methods": [
-      "GET"
+      "POST"
     ]
   },
   "opponents_show": {
     "path": "/opponents",
     "action": "Api\\Controller\\OpponentsController::show",
+    "methods": [
+      "GET"
+    ]
+  },
+  "player_existing": {
+    "path": "/players_verification/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
+    "action": "Api\\Controller\\PlayersController::existingVerification",
     "methods": [
       "GET"
     ]

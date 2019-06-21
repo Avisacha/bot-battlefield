@@ -44,6 +44,7 @@ class PlayerRepository
             if (!$result) {
                 throw new \Exception("Aucun joueur trouvé");
             }
+            var_dump($result);
             return $result;
         } catch (\PDOException $e) {
             return Container::get(Players::class);
@@ -52,7 +53,7 @@ class PlayerRepository
 
     public function getPlayers(): array
     {
-        $sql = "SELECT * FROM player";
+        $sql = "SELECT name FROM player";
         try {
             $sth = $this->db->prepare($sql);
             $sth->execute();
