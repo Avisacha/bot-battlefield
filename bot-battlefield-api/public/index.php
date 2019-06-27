@@ -16,17 +16,16 @@ try {
     foreach ($routes as $key => $value) {
         if (1 !== preg_match("/^" . str_replace("/", "\/", $value->path) . "$/", $request->getUri(), $match)) {
             continue;
-        } elseif (!in_array($request->getMethod(), $value->methods)) {
-
-            throw new BadMethodCallException();
+        }
+        if (!in_array($request->getMethod(), $value->methods)) {
+            continue;
+//            throw new BadMethodCallException();
         } else {
             array_shift($match);
 
             $controllerName = substr($value->action, 0, strpos($value->action, "::"));
             $controllerActionName = substr($value->action, strpos($value->action, "::") + 2);
             $controller = Container::get($controllerName);
-
-            $explode = explode("/", $request->getUri());
 
             if (!empty($match)) {
                 $response = $controller->{$controllerActionName}(... $match);
@@ -51,10 +50,22 @@ try {
             ->setStatusCode(405)
             ->setStatusText("Method not allowed");
     }
+} catch (Throwable $e) {
+    $data = new stdClass();
+    $data->error = $e->getMessage();
+    $response = (new Response())
+        ->setStatusCode(500)
+        ->addHeader("Content-Type", "application/json;charset=-utf-8")
+        ->setBody(json_encode($data));
 }
 
-header($response->getVersionStatus());
+//$response->setStatus(200);
 
+header($response->getVersionStatus());
+//$response
+//    ->addHeader("Access-Control-Allow-Origin", "*")
+//    ->addHeader("Access-Control-Allow-Headers", "Content-Type")
+//    ->addHeader("Access-Control-Allow-Methods", "POST");
 foreach ($response->getHeaders()->getHeaders() as $key => $value) {
     header($key . ": " . $value);
 }

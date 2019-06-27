@@ -12,6 +12,20 @@ class Response
     private $body;
     private $statusCode;
     private $statusText;
+    private $status = [
+        200 => "OK",
+        201 => "Created",
+        400 => "Bad Request",
+        401 => "Unauthorized",
+        403 => "Forbidden",
+        404 => "Not Found",
+        405 => "Method Not Allowed",
+        406 => "Not Acceptable",
+        409 => "Conflict",
+        412 => "Precondition Failed",
+        422 => "Unprocessable Entity",
+        500 => "Internal Server Error",
+    ];
 
     public function __construct()
     {
@@ -19,7 +33,6 @@ class Response
         $this->setStatusCode(200);
         $this->setStatusText("OK");
         $this->setHeaders(Container::get(HeaderBag::class));
-        $this->addHeader("Access-Control-Allow-Origin", "*");
         $this->setBody("");
     }
 
@@ -80,7 +93,7 @@ class Response
 
     public function getVersionStatus(): string
     {
-        return $this->getVersion()." ".$this->getStatusCode()." ".$this->getStatusText();
+        return $this->getVersion() . " " . $this->getStatusCode() . " " . $this->getStatusText();
     }
 
     public function __toString(): string
@@ -91,6 +104,15 @@ class Response
     public function addHeader(string $key, string $value): self
     {
         $this->headers->addHeader($key, $value);
+        return $this;
+    }
+
+    public function setStatus(string $statusCode): self
+    {
+        if (array_key_exists($statusCode, $this->status)) {
+            $this->setStatusCode($statusCode);
+            $this->setStatusText($this->status[$statusCode]);
+        }
         return $this;
     }
 

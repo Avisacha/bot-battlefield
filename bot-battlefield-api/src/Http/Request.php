@@ -13,7 +13,7 @@ class Request
     public function __construct()
     {
         $this->setUri((string)filter_input(INPUT_SERVER, "PATH_INFO"));
-        $this->setBody(filter_input_array(INPUT_GET));
+        $this->setBody((array)filter_input_array(INPUT_GET) + (array)filter_input_array(INPUT_POST));
         $this->setMethod(filter_input(INPUT_SERVER, "REQUEST_METHOD"));
     }
 

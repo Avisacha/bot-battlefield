@@ -2,26 +2,30 @@
 
 namespace Api\Controller;
 
-//use Api\Controller\Traits\JsonReponseTrait;
+use Api\Http\Request;
 use Api\Http\Response;
-use Api\Manager\Manager;
+use Api\IOC\Container;
+use Api\Repository\PlayerRepository;
 
 abstract class Controller
 {
-    /**
-     * @return Response
-     */
+    private $response;
+    private $request;
+
+    public final function __construct(Response $response, Request $request)
+    {
+        $this->response = $response;
+        $this->request = $request;
+    }
+
     public function getResponse(): Response
     {
         return $this->response;
     }
 
-
-    private $response;
-
-    public final function __construct(Response $response)
+    public function getRequest(): Request
     {
-        $this->response = $response;
+        return $this->request;
     }
 
     protected final function jsonResponse(\stdClass $data): Response
@@ -31,9 +35,14 @@ abstract class Controller
             ->setBody(json_encode($data));
     }
 
-    protected final function displayArray(array $array)
+    public function allowResponse(): self
     {
-        var_dump($array);
+        $this->getResponse()
+            ->addHeader("Access-Control-Allow-Origin", "*")
+            ->addHeader("Access-Control-Allow-Headers", "Content-Type")
+            ->addHeader("Access-Control-Allow-Methods", "POST, GET");
+
+        return $this;
     }
 
 }

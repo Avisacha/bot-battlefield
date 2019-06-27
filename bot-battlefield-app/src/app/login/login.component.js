@@ -43,72 +43,25 @@ export class LoginComponent extends Component {
             this.nickname.focus();
             return;
         }
-
         this.dialogComponent.show();
         this.dialogComponent.dialogSetTitle("Creating account");
-
-        PlayerService.existingVerify(this.nickname.value)
-            .then((data) => this.onVerificationLoad(data))
-            .catch((error) => this.onVerificationError(error));
-
-        // PlayerService.read()
-        //     .then((data) => this.onReadLoad(data))
-        //     .catch((error) => this.onReadError(error));
-    }
-
-    onVerificationLoad(data) {
-        if (409 === data) {
-            this.dialogComponent.dialogSetTitle(`Nickname existant`);
-            this.dialogComponent.dialogRemoveSpinner();
-            this.dialogComponent.dialogSetCloseButton();
-            return;
-        }
         PlayerService.create(this.nickname.value)
-            .then((data) => this.onCreateLoad(data))
-            .catch((error) => this.onCreateError(error));
+            .then((player) => this.onCreateLoad(player))
+            .catch((error) => this.onError(error));
+
     }
-
-    // onReadLoad(data) {
-    //     for (const player of data.players) {
-    //         if (player.name === this.nickname.value) {
-    //             this.dialogComponent.dialogSetTitle(`Nickname existant`);
-    //             this.dialogComponent.dialogRemoveSpinner();
-    //             this.dialogComponent.dialogSetCloseButton();
-    //             return;
-    //         }
-    //     }
-    //     PlayerService.create(this.nickname.value)
-    //         .then((data) => this.onCreateLoad(data))
-    //         .catch((error) => this.onCreateError(error));
-    // }
-
-    // onReadError(error) {
-    //     this.dialogComponent.dialogSetTitle(`On Read Error ${error}`);
-    //     this.dialogComponent.dialogRemoveSpinner();
-    //     this.dialogComponent.dialogSetCloseButton();
-
-    //     console.log(error);
-    // }
 
     onCreateLoad(player) {
+        this.dialogComponent.closeDialog();
         PlayerLocalStorageService.create(player)
-            .then(() => {
-                this.dialogComponent.closeDialog();
-                Router.navigate("/home", nickname.value)
-            })
-            .catch((error) => {
-                this.dialogComponent.dialogSetTitle(error);
-                this.dialogComponent.dialogRemoveSpinner();
-                this.dialogComponent.dialogSetCloseButton();
-            });
+            .then(() => Router.navigate("/home"))
+            .catch((error) => this.onError(error))
     }
-
-    onCreateError(error) {
-        this.dialogComponent.dialogSetTitle(`On Create Error ${error}`);
+    
+    onError(error) {
+        this.dialogComponent.dialogSetTitle(error);
         this.dialogComponent.dialogRemoveSpinner();
         this.dialogComponent.dialogSetCloseButton();
-
-        console.log(error);
     }
 
 }

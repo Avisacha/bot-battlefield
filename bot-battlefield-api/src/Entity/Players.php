@@ -44,7 +44,7 @@ class Players implements \JsonSerializable
         return $this;
     }
 
-    public function getReady(): bool
+    public function getReady(): int
     {
         return $this->ready;
     }

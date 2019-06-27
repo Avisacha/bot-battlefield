@@ -11,32 +11,27 @@ export class HomeComponent extends Component {
         super(
             `home`,
             html,
-            ``
         );
-
         this.menuComponent = new MenuComponent();
         this.opponentSelectionComponent = new OpponentSelectionComponent();
-
         this.components.push(this.menuComponent);
         this.components.push(this.opponentSelectionComponent);
-
-        PlayerLocalStorageService.read()
-        .then((data) => {
-            if (null === data) {
-                Router.navigate("/login");
-                return;
-            }
-        })
-        .catch((error) => console.log(error));
     }
 
     display() {
-        super.display();
+        PlayerLocalStorageService.read()
+            .then((data) => {
+                if (null === data) {
+                    Router.navigate("/login");
+                    return;
+                }
+                super.display();
 
-        // window.document.querySelector(".eHome").addEventListener(
-        //     "click",
-        //     () => this.event()
-        // );
+            })
+            .catch((error) => {
+                console.log(error);
+                super.display();
+            });
     }
 
     event() {

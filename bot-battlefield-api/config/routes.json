@@ -1,27 +1,27 @@
 {
+  "authorization_allow": {
+    "path": "/.*",
+    "action": "Api\\Controller\\AuthorizationController::allow",
+    "methods": [
+      "OPTIONS"
+    ]
+  },
   "player_show": {
     "path": "/players/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
-    "action": "Api\\Controller\\PlayersController::show",
+    "action": "Api\\Controller\\PlayersController::showByOne",
     "methods": [
       "GET"
     ]
   },
   "player_show_all": {
-    "path": "/players",
+    "path": "/players(.*)",
     "action": "Api\\Controller\\PlayersController::showAll",
     "methods": [
       "GET"
     ]
   },
-  "player_remove": {
-    "path": "/remove/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
-    "action": "Api\\Controller\\PlayersController::remove",
-    "methods": [
-      "GET"
-    ]
-  },
-  "player_create": {
-    "path": "/create_player/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
+  "player_create_": {
+    "path": "/players",
     "action": "Api\\Controller\\PlayersController::create",
     "methods": [
       "POST"
@@ -30,13 +30,6 @@
   "opponents_show": {
     "path": "/opponents",
     "action": "Api\\Controller\\OpponentsController::show",
-    "methods": [
-      "GET"
-    ]
-  },
-  "player_existing": {
-    "path": "/players_verification/([a-z@-Z\\dxC0-\\xFF_\\-]{3,16})",
-    "action": "Api\\Controller\\PlayersController::existingVerification",
     "methods": [
       "GET"
     ]

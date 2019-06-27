@@ -1,110 +1,53 @@
 // import { jsonbin } from "../../../../resources/jsonbin";
-import { webapi } from "../../../../resources/webapi";
-import { PlayerModel } from "../model/player.model";
-
-const response = {
-    players: []
-};
+import { apiBotBattlefield } from "../../../../resources/api.bot-battlefield";
 
 export class PlayerService {
     constructor() {
     }
 
     static create(name) {
-        const playerModel = new PlayerModel();
-        playerModel.name = name;
-        response.players.push(playerModel);
         return new Promise((resolve, reject) => {
-            const dataToSend = JSON.stringify(response);
-            let req = new XMLHttpRequest();
-            // console.log(response);
-            req.onreadystatechange = () => {
-                if (4 !== req.readyState) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if (4 !== xhr.readyState) {
                     return;
                 }
-
-                if (200 !== req.status) {
-                    response.players.pop();
-                    reject(req.status);
-                    return;
+                if (201 !== xhr.status) {
+                    return reject("Player already exist");
                 }
-                resolve(response);
+                const player = JSON.parse(xhr.response).player;
+                resolve(player);
             }
 
-            req.open("POST", `${webapi.url}/create_player/${name}`);
-            // req.setRequestHeader("secret-key", jsonbin.key);
-            // req.setRequestHeader("versioning", "false");
-            // req.setRequestHeader("Content-type", "application/json");
-            req.send(dataToSend);
-        });
-    }
-
-    static existingVerify(name) {
-        return new Promise((resolve, reject) => {
-            let req = new XMLHttpRequest();
-
-            req.onreadystatechange = () => {
-                if (4 !== req.readyState) {
-                    return;
-                }
-
-                if (200 !== req.status) {
-                    reject(req.status);
-                    return;
-                }
-
-                resolve(req.status);
-            }
-
-            req.open("GET", `${webapi.url}/players_verification/${name}`, true);
-            req.send();
+            xhr.open("POST", `${apiBotBattlefield.url}${apiBotBattlefield.endpoints.players}`);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(`name=${window.encodeURI(name)}`);
         });
     }
 
     static read() {
         return new Promise((resolve, reject) => {
-            let req = new XMLHttpRequest();
-            req.onreadystatechange = () => {
-
-                if (4 !== req.readyState) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if (4 !== xhr.readyState) {
+                    return;
+                }
+                
+                if (200 !== xhr.status) {
+                    reject("Can not process entity");
                     return;
                 }
 
-                if (200 !== req.status) {
-                    reject(req.status);
-                    return;
-                }
-
-                const jsonResponse = JSON.parse(req.response);
-
-                for (const player in jsonResponse) {
-                    let playerModel = new PlayerModel();
-                    // playerModel.id = jsonResponse[player].id;
-                    playerModel.name = jsonResponse[player].name;
-                    // playerModel.token = jsonResponse[player].token;
-                    // playerModel.ready = jsonResponse[player].ready;
-                    response.players.push(playerModel);
-                }
-
-                resolve(response);
+                resolve(JSON.parse(xhr.response));
             }
 
-            req.open("GET", `${webapi.url}/players`, true);
-            // req.open("GET", `${jsonbin.url}${jsonbin.bins.players}${jsonbin.version}`);
-            // req.setRequestHeader("secret-key", jsonbin.key);
-            req.send();
-        });
-    }
-    
+            const token = `?token=${JSON.parse(window.localStorage.getItem("player")).token}`;
+            const id = `&id=${JSON.parse(window.localStorage.getItem("player")).id}`;
 
-    static update(data) {
-        return new Promise((resolve, reject) => {
-        });
-    }
-
-    static delete() {
-        return new Promise((resolve, reject) => {
-
+            xhr.open("GET", `${apiBotBattlefield.url}${apiBotBattlefield.endpoints.players}${token}${id}`);
+            xhr.send(
+                // `token=${JSON.parse(window.localStorage.getItem("player")).token}`
+                );
         });
     }
 

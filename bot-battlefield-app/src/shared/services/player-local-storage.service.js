@@ -5,34 +5,31 @@ export class PlayerLocalStorageService {
         this.response;
     }
 
-    static create(playerJson) {        
+    static create(playerJson) {
         return new Promise((resolve, reject) => {
-            //console.log(player);
+            try{
+                this.playerStringifyied = JSON.stringify(playerJson);
+                window.localStorage.setItem(key, this.playerStringifyied);
+                resolve();
 
-            // if (typeof(playerJSon) !== "object") {
-            //     reject("type is not an object");
-            //     return;  
-            // }
-            // if (document.localStorage.getItem(key)) {
-            //     reject("player already exist");
-            //     return;
-            // }
-
-            this.playerStringifyied = JSON.stringify(playerJson.players[playerJson.players.length - 1]);
-            
-            window.localStorage.setItem(key, this.playerStringifyied);
-            resolve();
+            }
+            catch(error){
+                reject(error);
+            }
         });
 
     }
 
     static read() {
         return new Promise((resolve, reject) => {
-            if (typeof ("player") !== "string") {
-                reject("type is not a string");
+            try {
+                this.response = window.localStorage.getItem("player");
+                resolve(this.response);
             }
-            this.response = window.localStorage.getItem("player");
-            resolve(this.response);
+            catch(error){
+                reject(error);
+
+            }
         });
     }
 

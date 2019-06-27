@@ -9,12 +9,12 @@ use Api\Repository\PlayerRepository;
 
 class PlayersController extends Controller
 {
-    public function show(string $name): Response
+    public function showByOne(string $name): Response
     {
         $data = new \stdClass();
         $playerRepository = Container::get(PlayerRepository::class);
         try {
-            $player = $playerRepository->getPlayer($name);
+            $player = $playerRepository->findByName($name);
             $data->player = $player;
         } catch (\Exception $e) {
             $this->getResponse()
@@ -27,41 +27,51 @@ class PlayersController extends Controller
 
     public function showAll(): Response
     {
-        $data = new \stdClass();
+        $this->tokenVerification();
+
         $playerRepository = Container::get(PlayerRepository::class);
-        $players = $playerRepository->getPlayers();
+
+        $data = new \stdClass();
+        $data->players = [];
+        $players = $playerRepository->findAll();
+
         foreach ($players as $key => $value) {
-            $data->$key = $value;
+            array_push($data->players, $value);
         }
-        return $this->jsonResponse($data);
+
+        return $this
+            ->allowResponse()
+            ->jsonResponse($data);
     }
 
-    public function create(string $name)
+    public function create(): Response
     {
-//        $data = new \stdClass();
+        $request = $this->getRequest();
+        if (!array_key_exists("name", $request->getBody())) {
+            return $this->getResponse()->setStatus(422);
+        }
+        $name = $request->getBody()["name"];
+        if (!preg_match("/^[a-z@-Z\\d\\xC0-\\xFF_-]{3,16}$/u", $name)) {
+            return $this->getResponse()->setStatus(412);
+        }
+        $data = new \stdClass();
         $player = Container::get(Players::class)
             ->setName($name)
-            ->setToken(bin2hex(random_bytes(15)))
-            ->setReady(false);
-
+            ->setToken(password_hash(bin2hex(random_bytes(15)), PASSWORD_DEFAULT))
+            ->setReady(time());
         $playerRepository = Container::get(PlayerRepository::class);
-
         try {
-            $playerRepository->getPlayer($name);
-
-            $response = new Response();
-            $response->setVersion("1.1")
-                ->setStatusCode(409)
-                ->setStatusText("Conflict");
-
-//            return $response;
-        } catch (\Exception $e) {
-            $playerRepository->createPlayer($player);
-            $getPlayer = $playerRepository->getPlayer($name);
-//            $data->player = $getPlayer;
-
-//            return $this->jsonResponse($data);
+            $playerRepository->persist($player);
+        } catch (\InvalidArgumentException $e) {
+            return $this->getResponse()->setStatus(409);
         }
+
+        $data->player = $player;
+
+        return $this
+            ->allowResponse()
+            ->jsonResponse($data)
+            ->setStatus(201);
     }
 
     public function remove(string $name): Response
@@ -70,41 +80,55 @@ class PlayersController extends Controller
         $playerRepository = Container::get(PlayerRepository::class);
 
         try {
-            $playerRepository->getPlayer($name);
+            $playerRepository->findByName($name);
 
             $playerRepository->removePlayer($name);
-            $getAllPlayers = $playerRepository->getPlayers();
+            $getAllPlayers = $playerRepository->findAll();
             foreach ($getAllPlayers as $key => $value) {
                 $data->$key = $value;
             }
             return $this->jsonResponse($data);
         } catch (\Exception $e) {
-            $response = new Response();
+            $response = parent::getResponse();
+//            $response = new Response();
             $response->setVersion("1.1")
-                ->setStatusCode(404)
-                ->setStatusText("Not Found");
+                ->setStatus(404);
             return $response;
         }
 
     }
 
-    public function existingVerification(string $name): Response
+    public function tokenVerification(): Response
     {
+        if ('GET' !== parent::getRequest()->getMethod()) {
+            return $this->getResponse();
+        }
+
+        $id = filter_input(INPUT_GET, 'id');
+        $token = filter_input(INPUT_GET, 'token');
+
+        if (!$id) {
+            return $this
+                ->getResponse()
+                ->setVersion(1.1)
+                ->setStatus(401);
+        }
+
+        if (!$token) {
+            return $this
+                ->getResponse()
+                ->setVersion(1.1)
+                ->setStatus(401);
+        }
+
         $playerRepository = Container::get(PlayerRepository::class);
-        $response = new Response();
-        try {
-            $playerRepository->getPlayer($name);
-            $response->setVersion("1.1")
-                ->setStatusCode(200)
-                ->setStatusText("OK");
-            var_dump($response);
-            return $response;
-        } catch (\Exception $e) {
-            $response->setVersion("1.1")
-                ->setStatusCode(409)
-                ->setStatusText("Conflict");
-            var_dump($response);
-            return $response;
+        $player = $playerRepository->findByIdToken($id, $token);
+
+        if (!$player) {
+            return $this
+                ->getResponse()
+                ->setVersion(1.1)
+                ->setStatus(401);
         }
     }
 

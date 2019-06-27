@@ -15,7 +15,7 @@ class PlayerRepository
         $this->db = $manager->getConnexion();
     }
 
-    public function createPlayer(Players $players)
+    public function persist(Players $players): Players
     {
         $name = $players->getName();
         $token = $players->getToken();
@@ -23,16 +23,18 @@ class PlayerRepository
         $sql = "INSERT INTO player (name, token, ready) VALUES (?, ?, ?)";
         try {
             $sth = $this->db->prepare($sql);
-            $sth->bindValue(1, $name, \PDO::PARAM_STR);
-            $sth->bindValue(2, $token, \PDO::PARAM_STR);
-            $sth->bindValue(3, $ready, \PDO::PARAM_BOOL);
+            $sth->bindValue(1, $name);
+            $sth->bindValue(2, $token);
+            $sth->bindValue(3, $ready);
             $sth->execute();
+            $players->setId($this->db->lastInsertId());
         } catch (\PDOException $e) {
-
+            throw new \InvalidArgumentException();
         }
+        return $players;
     }
 
-    public function getPlayer(string $name): Players
+    public function findByName(string $name): Players
     {
         $sql = "SELECT * FROM player WHERE name = ?";
         try {
@@ -44,14 +46,35 @@ class PlayerRepository
             if (!$result) {
                 throw new \Exception("Aucun joueur trouvé");
             }
-            var_dump($result);
+//            var_dump($result);
             return $result;
         } catch (\PDOException $e) {
             return Container::get(Players::class);
         }
     }
 
-    public function getPlayers(): array
+    public function findByIdToken(int $id, string $token): Players
+    {
+        $sql = "SELECT * FROM player WHERE id = ? AND token = ?";
+        try {
+            $sth = $this->db->prepare($sql);
+            $sth->bindValue(1, $id, \PDO::PARAM_INT);
+            $sth->bindValue(2, $token, \PDO::PARAM_STR);
+            $sth->execute();
+            $sth->setFetchMode(\PDO::FETCH_CLASS, Players::class);
+            $result = $sth->fetch();
+            if (!$result) {
+                throw new \Exception("Aucun joueur trouvé");
+            }
+            return $result;
+        } catch (\PDOException $e) {
+            return Container::get(Players::class);
+        }
+    }
+
+
+
+    public function findAll(): array
     {
         $sql = "SELECT name FROM player";
         try {
