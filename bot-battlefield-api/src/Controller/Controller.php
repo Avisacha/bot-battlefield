@@ -35,11 +35,11 @@ abstract class Controller
             ->setBody(json_encode($data));
     }
 
-    public function allowResponse(): self
+    public function accessControlResponse(): self
     {
         $this->getResponse()
             ->addHeader("Access-Control-Allow-Origin", "*")
-            ->addHeader("Access-Control-Allow-Headers", "Content-Type")
+            ->addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
             ->addHeader("Access-Control-Allow-Methods", "POST, GET");
 
         return $this;

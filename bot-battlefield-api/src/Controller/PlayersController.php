@@ -2,6 +2,7 @@
 
 namespace Api\Controller;
 
+use Api\Authorization\Authorization;
 use Api\Entity\Players;
 use Api\Http\Response;
 use Api\IOC\Container;
@@ -27,20 +28,14 @@ class PlayersController extends Controller
 
     public function showAll(): Response
     {
-        $this->tokenVerification();
-
-        $playerRepository = Container::get(PlayerRepository::class);
-
-        $data = new \stdClass();
-        $data->players = [];
-        $players = $playerRepository->findAll();
-
-        foreach ($players as $key => $value) {
-            array_push($data->players, $value);
+        if (200 !== Container::get(Authorization::class)->tokenVerification($this->getRequest(), $this->getResponse())->getStatusCode())
+        {
+            return $this->getResponse();
         }
-
+        $data = Container::get(\stdClass::class);
+        $data->players = Container::get(PlayerRepository::class)->findall();
         return $this
-            ->allowResponse()
+            ->accessControlResponse()
             ->jsonResponse($data);
     }
 
@@ -69,67 +64,9 @@ class PlayersController extends Controller
         $data->player = $player;
 
         return $this
-            ->allowResponse()
+            ->accessControlResponse()
             ->jsonResponse($data)
             ->setStatus(201);
-    }
-
-    public function remove(string $name): Response
-    {
-        $data = new \stdClass();
-        $playerRepository = Container::get(PlayerRepository::class);
-
-        try {
-            $playerRepository->findByName($name);
-
-            $playerRepository->removePlayer($name);
-            $getAllPlayers = $playerRepository->findAll();
-            foreach ($getAllPlayers as $key => $value) {
-                $data->$key = $value;
-            }
-            return $this->jsonResponse($data);
-        } catch (\Exception $e) {
-            $response = parent::getResponse();
-//            $response = new Response();
-            $response->setVersion("1.1")
-                ->setStatus(404);
-            return $response;
-        }
-
-    }
-
-    public function tokenVerification(): Response
-    {
-        if ('GET' !== parent::getRequest()->getMethod()) {
-            return $this->getResponse();
-        }
-
-        $id = filter_input(INPUT_GET, 'id');
-        $token = filter_input(INPUT_GET, 'token');
-
-        if (!$id) {
-            return $this
-                ->getResponse()
-                ->setVersion(1.1)
-                ->setStatus(401);
-        }
-
-        if (!$token) {
-            return $this
-                ->getResponse()
-                ->setVersion(1.1)
-                ->setStatus(401);
-        }
-
-        $playerRepository = Container::get(PlayerRepository::class);
-        $player = $playerRepository->findByIdToken($id, $token);
-
-        if (!$player) {
-            return $this
-                ->getResponse()
-                ->setVersion(1.1)
-                ->setStatus(401);
-        }
     }
 
 }

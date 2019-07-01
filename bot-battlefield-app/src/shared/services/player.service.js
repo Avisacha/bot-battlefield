@@ -1,5 +1,6 @@
 // import { jsonbin } from "../../../../resources/jsonbin";
 import { apiBotBattlefield } from "../../../../resources/api.bot-battlefield";
+import { PlayerLocalStorageService } from "./player-local-storage.service";
 
 export class PlayerService {
     constructor() {
@@ -25,14 +26,14 @@ export class PlayerService {
         });
     }
 
-    static read() {
+    static read(player) {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = () => {
                 if (4 !== xhr.readyState) {
                     return;
                 }
-                
+
                 if (200 !== xhr.status) {
                     reject("Can not process entity");
                     return;
@@ -41,13 +42,15 @@ export class PlayerService {
                 resolve(JSON.parse(xhr.response));
             }
 
-            const token = `?token=${JSON.parse(window.localStorage.getItem("player")).token}`;
-            const id = `&id=${JSON.parse(window.localStorage.getItem("player")).id}`;
+            const token = player.token;
+            const id = player.id;
 
-            xhr.open("GET", `${apiBotBattlefield.url}${apiBotBattlefield.endpoints.players}${token}${id}`);
+            xhr.open("GET", `${apiBotBattlefield.url}${apiBotBattlefield.endpoints.players}`);
+            xhr.setRequestHeader("Authorization", `Basic ${window.btoa(`${id}:${token}`)}`);
+
             xhr.send(
                 // `token=${JSON.parse(window.localStorage.getItem("player")).token}`
-                );
+            );
         });
     }
 

@@ -2,11 +2,12 @@
 
 namespace Api\Repository;
 
+use Api\Entity\Entity;
 use Api\Entity\Players;
 use Api\IOC\Container;
 use Api\Manager\Manager;
 
-class PlayerRepository
+class PlayerRepository implements Repository
 {
     private $db;
 
@@ -53,7 +54,7 @@ class PlayerRepository
         }
     }
 
-    public function findByIdToken(int $id, string $token): Players
+    public function findOneByAuthorization(int $id, string $token): Entity
     {
         $sql = "SELECT * FROM player WHERE id = ? AND token = ?";
         try {

@@ -5,22 +5,19 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AuthorizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AccessControlController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/PlayersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PlayersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Opponents.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Opponents.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Players.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Players.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Header/HeadersRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Header/HeadersRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Http/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Http/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Response.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/PlayerRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/PlayerRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/dist/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/home.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/home.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/menu/menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/menu/menu.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/menu/menu.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/menu/menu.component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/opponent-selection/player-list/player-list.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/app/home/opponent-selection/player-list/player-list.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/app/login/login.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/app/login/login.component.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/shared/services/player-local-storage.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/shared/services/player-local-storage.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../bot-battlefield-app/src/shared/services/player.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bot-battlefield-app/src/shared/services/player.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resources/webapi.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,19 +50,10 @@
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/routes.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
-                  <caret line="33" column="11" lean-forward="true" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/public/index.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-85">
-                  <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+                <state relative-caret-position="204">
+                  <caret line="14" selection-start-line="14" selection-start-column="2" selection-end-line="15" selection-end-column="7" />
                   <folding>
                     <element signature="e#7#29#0#PHP" expanded="true" />
                   </folding>
@@ -73,13 +61,34 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Repository/Repository.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="170">
+                  <caret line="10" column="42" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="42" />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Controller/PlayersController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="498">
-                  <caret line="124" column="64" lean-forward="true" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
+                <state relative-caret-position="374">
+                  <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
                   <folding>
-                    <element signature="e#34#57#0#PHP" expanded="true" />
+                    <element signature="e#34#70#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/Authorization/Authorization.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="561">
+                  <caret line="33" selection-start-line="33" selection-end-line="34" />
+                  <folding>
+                    <element signature="e#39#60#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -88,35 +97,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Repository/PlayerRepository.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="376">
-                  <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+                <state relative-caret-position="476">
+                  <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
                   <folding>
-                    <element signature="e#34#57#0#PHP" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Entity/Players.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="705">
-                  <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/Controller/Controller.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="563">
-                  <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#34#55#0#PHP" expanded="true" />
+                    <element signature="e#34#56#0#PHP" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -139,6 +127,7 @@
       <find>var</find>
       <find>findby</find>
       <find>allow</find>
+      <find>Autho</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -153,25 +142,29 @@
         <option value="$PROJECT_DIR$/config/json" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/Http/HeaderBag.php" />
-        <option value="$PROJECT_DIR$/src/Http/Header/HeadersRequest.php" />
         <option value="$PROJECT_DIR$/src/Http/Header/HeaderBag.php" />
         <option value="$PROJECT_DIR$/src/Entity/JSONSerializable.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Opponents.php" />
         <option value="$PROJECT_DIR$/src/Controller/Traits/JsonReponseTrait.php" />
         <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/src/Controller/PlayerControllerCreate.php" />
         <option value="$PROJECT_DIR$/src/Controller/OpponentsController.php" />
         <option value="$PROJECT_DIR$/src/Manager/Manager.php" />
         <option value="$PROJECT_DIR$/src/IOC/Container.php" />
-        <option value="$PROJECT_DIR$/src/Http/Request.php" />
-        <option value="$PROJECT_DIR$/src/Entity/Players.php" />
         <option value="$PROJECT_DIR$/src/Http/Response.php" />
-        <option value="$PROJECT_DIR$/config/routes.json" />
-        <option value="$PROJECT_DIR$/src/Repository/PlayerRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/AuthorizationController.php" />
+        <option value="$PROJECT_DIR$/src/Http/Request.php" />
+        <option value="$PROJECT_DIR$/src/Http/Header/HeadersRequest.php" />
         <option value="$PROJECT_DIR$/public/index.php" />
+        <option value="$PROJECT_DIR$/src/Controller/AccessControlController.php" />
         <option value="$PROJECT_DIR$/src/Controller/Controller.php" />
+        <option value="$PROJECT_DIR$/config/routes.json" />
+        <option value="$PROJECT_DIR$/src/Controller/AuthorizationController.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Opponents.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Players.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Entity.php" />
+        <option value="$PROJECT_DIR$/src/Repository/Repository.php" />
         <option value="$PROJECT_DIR$/src/Controller/PlayersController.php" />
+        <option value="$PROJECT_DIR$/src/Authorization/Authorization.php" />
+        <option value="$PROJECT_DIR$/src/Repository/PlayerRepository.php" />
       </list>
     </option>
   </component>
@@ -204,34 +197,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="bot-battlefield-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bot-battlefield-api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bot-battlefield-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bot-battlefield-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bot-battlefield-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bot-battlefield-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bot-battlefield-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bot-battlefield-api" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -290,20 +256,21 @@
       <workItem from="1561377596220" duration="9017000" />
       <workItem from="1561445827373" duration="18470000" />
       <workItem from="1561536357044" duration="9904000" />
-      <workItem from="1561619103683" duration="18574000" />
+      <workItem from="1561619103683" duration="18669000" />
+      <workItem from="1561705886909" duration="19846000" />
+      <workItem from="1561965083360" duration="3157000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243184000" />
+    <option name="totallyTimeSpent" value="266282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.141258" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.1444563" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -316,7 +283,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info active="true" anchor="bottom" id="Command Line Tools Console" order="10" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="12" side_tool="true" visible="true" weight="0.17226435" />
+      <window_info anchor="bottom" id="Terminal" order="12" side_tool="true" visible="true" weight="0.19068256" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -397,24 +364,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Http/Header/HeadersRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="61" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Opponents.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -446,20 +399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IOC/Container.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="61" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Http/Header/HeaderBag.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Http/Response.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="569">
@@ -470,70 +409,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Players.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="46" column="35" selection-start-line="46" selection-start-column="35" selection-end-line="46" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/PlayerRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
-          <folding>
-            <element signature="e#34#57#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Http/Request.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
+        <state relative-caret-position="425">
+          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Http/Header/HeaderBag.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Http/Header/HeadersRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IOC/Container.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="11" lean-forward="true" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
+        <state relative-caret-position="51">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AuthorizationController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="53" lean-forward="true" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AuthorizationController.php" />
     <entry file="file://$PROJECT_DIR$/src/Controller/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="45" column="5" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+        <state relative-caret-position="476">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
             <element signature="e#34#55#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Opponents.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Players.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="29" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/Entity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AccessControlController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="204">
+          <caret line="14" selection-start-line="14" selection-start-column="2" selection-end-line="15" selection-end-column="7" />
           <folding>
             <element signature="e#7#29#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Authorization/Authorization.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" selection-start-line="33" selection-end-line="34" />
+          <folding>
+            <element signature="e#39#60#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/Repository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/PlayersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="124" column="64" lean-forward="true" selection-start-line="124" selection-start-column="64" selection-end-line="124" selection-end-column="64" />
+        <state relative-caret-position="374">
+          <caret line="22" column="45" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
           <folding>
-            <element signature="e#34#57#0#PHP" expanded="true" />
+            <element signature="e#34#70#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../bot-battlefield-ws/vendor/autoload.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/PlayerRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding>
+            <element signature="e#34#56#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

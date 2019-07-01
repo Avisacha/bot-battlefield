@@ -1,7 +1,7 @@
 {
   "authorization_allow": {
     "path": "/.*",
-    "action": "Api\\Controller\\AuthorizationController::allow",
+    "action": "Api\\Controller\\AccessControlController::allow",
     "methods": [
       "OPTIONS"
     ]

@@ -20,9 +20,14 @@ export class PlayerListComponent extends Component {
         this.dialog.show();
         this.dialog.dialogSetTitle("Loading players");
 
-        PlayerService.read()
-            .then((data) => this.onReadLoad(data))
+        PlayerLocalStorageService.read()
+            .then((data) => {
+                PlayerService.read(data)
+                    .then((players) => this.onReadLoad(players, data))
+                    .catch((error) => this.onReadError(error));
+            })
             .catch((error) => this.onReadError(error));
+
 
         document.addEventListener(
             "click",
@@ -45,16 +50,13 @@ export class PlayerListComponent extends Component {
         console.log(document.getElementsByClassName("selected")[0].firstChild.textContent);
     }
 
-    onReadLoad(players) {
-        PlayerLocalStorageService.read()
-        .then((data) => {
-            for (const player in players.players) {                
-                if (players.players[player].name !== JSON.parse(data).name) {
-                    this.addList(players.players[player].name);
-                }
+    onReadLoad(players, data) {
+        for (const player in players.players) {
+            if (players.players[player].name !== data.name) {
+                this.addList(players.players[player].name);
             }
-        })
-        .catch(() => {});
+        }
+
 
         this.dialog.closeDialog();
     }

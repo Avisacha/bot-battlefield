@@ -4,7 +4,7 @@
 namespace Api\Entity;
 
 
-class Players implements \JsonSerializable
+class Players extends Entity implements \JsonSerializable
 {
     private $id;
     private $name;

@@ -18,7 +18,7 @@ export class MenuComponent extends Component {
                 const headerRow = window.document.querySelector(".headerRow");
                 const h4 =  window.document.createElement("h4");
                 
-                const textNode = window.document.createTextNode(JSON.parse(player).name);
+                const textNode = window.document.createTextNode(player.name);
                 headerRow.appendChild(h4);
                 h4.appendChild(textNode);
             })

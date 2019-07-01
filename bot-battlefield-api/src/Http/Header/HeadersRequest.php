@@ -9,7 +9,6 @@ class HeadersRequest extends HeaderBag
     public function __construct()
     {
         parent::__construct();
-        $this->headers = [];
         foreach (filter_input_array(INPUT_SERVER) as $key => $value) {
             if ("HTTP_" === substr($key, 0, 5)) {
                 $key = substr($key, 5);

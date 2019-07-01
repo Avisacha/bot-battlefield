@@ -12,6 +12,9 @@ $response = null;
 $jsonRoutes = file_get_contents(__DIR__ . "/../config/routes.json");
 $routes = json_decode($jsonRoutes);
 
+//var_dump($request->getHeaderBag()->getHeaders()['Authorization']);
+//exit;
+
 try {
     foreach ($routes as $key => $value) {
         if (1 !== preg_match("/^" . str_replace("/", "\/", $value->path) . "$/", $request->getUri(), $match)) {
