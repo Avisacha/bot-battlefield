@@ -62,6 +62,11 @@ module.exports = {
                     './'
                 ]
             }
+            // advanced: {
+            //     browserSync: {
+            //         notify: false,
+            //     },
+            // },
         })
     ]
 };

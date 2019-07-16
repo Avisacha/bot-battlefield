@@ -28,12 +28,13 @@ class PlayersController extends Controller
 
     public function showAll(): Response
     {
-        if (200 !== Container::get(Authorization::class)->tokenVerification($this->getRequest(), $this->getResponse())->getStatusCode())
-        {
+        if (200 !== Container::get(Authorization::class)->tokenVerification($this->getRequest(), $this->getResponse())->getStatusCode()) {
             return $this->getResponse();
         }
         $data = Container::get(\stdClass::class);
-        $data->players = Container::get(PlayerRepository::class)->findall();
+        $data->players = Container::get(PlayerRepository::class)->findAll();
+//        $data->players = Container::get(PlayerRepository::class)->findByConnected();
+
         return $this
             ->accessControlResponse()
             ->jsonResponse($data);

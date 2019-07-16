@@ -16,7 +16,7 @@ class Players extends Entity implements \JsonSerializable
         return $this->id;
     }
 
-    public function setId($id): self
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -27,7 +27,7 @@ class Players extends Entity implements \JsonSerializable
         return $this->name;
     }
 
-    public function setName($name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
@@ -38,7 +38,7 @@ class Players extends Entity implements \JsonSerializable
         return $this->token;
     }
 
-    public function setToken($token): self
+    public function setToken(string $token): self
     {
         $this->token = $token;
         return $this;
@@ -49,7 +49,7 @@ class Players extends Entity implements \JsonSerializable
         return $this->ready;
     }
 
-    public function setReady($ready): self
+    public function setReady(int $ready): self
     {
         $this->ready = $ready;
         return $this;

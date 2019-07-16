@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
@@ -13,21 +14,25 @@ class Player
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"public"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=164, unique=true)
+     * @Groups({"public"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=164, unique=true)
+     * @Groups({"private"})
      */
     private $token;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"private"})
      */
     private $ready;
 

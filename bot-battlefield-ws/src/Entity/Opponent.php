@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OpponentRepository")
@@ -13,18 +14,21 @@ class Opponent
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"public"})
      */
     private $id;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Player")
      * @ORM\JoinColumn(nullable=false, unique=true)
+     * @Groups({"public"})
      */
     private $playerOne;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Player")
      * @ORM\JoinColumn(nullable=false, unique=true)
+     * @Groups({"public"})
      */
     private $playerTwo;
 

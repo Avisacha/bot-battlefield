@@ -47,10 +47,8 @@ export class PlayerService {
 
             xhr.open("GET", `${apiBotBattlefield.url}${apiBotBattlefield.endpoints.players}`);
             xhr.setRequestHeader("Authorization", `Basic ${window.btoa(`${id}:${token}`)}`);
-
-            xhr.send(
-                // `token=${JSON.parse(window.localStorage.getItem("player")).token}`
-            );
+            xhr.setRequestHeader('Cache-Control', 'no-cache');
+            xhr.send();
         });
     }
 

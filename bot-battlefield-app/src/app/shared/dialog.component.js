@@ -31,7 +31,7 @@ export class DialogComponent extends Component {
         spinner.parentNode.removeChild(spinner);
     }
 
-    dialogSetCloseButton() {
+    dialogSetCloseButton(text) {
         const dialogElement = window.document.querySelector("dialog");
         const divElement = window.document.createElement("div");
         divElement.className = "mdl-dialog__actions";
@@ -40,7 +40,7 @@ export class DialogComponent extends Component {
         const buttonElement = window.document.createElement("button");
         buttonElement.type = "submit";
         buttonElement.className = "mdl-button";
-        const textNode = window.document.createTextNode("Close");
+        const textNode = window.document.createTextNode(text || "Close");
         
         dialogElement.appendChild(divElement);
         divElement.appendChild(formElement);

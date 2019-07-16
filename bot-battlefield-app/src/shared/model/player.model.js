@@ -1,4 +1,4 @@
-export class PlayerModel {
+export class Player {
     constructor() {
         this.id;
         this.name;

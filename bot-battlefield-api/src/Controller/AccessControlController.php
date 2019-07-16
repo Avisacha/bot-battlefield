@@ -13,5 +13,4 @@ class AccessControlController extends Controller
         return $this->accessControlResponse()->getResponse();
     }
 
-
 }

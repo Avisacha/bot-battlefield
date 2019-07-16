@@ -14,7 +14,7 @@
     ]
   },
   "player_show_all": {
-    "path": "/players(.*)",
+    "path": "/players",
     "action": "Api\\Controller\\PlayersController::showAll",
     "methods": [
       "GET"

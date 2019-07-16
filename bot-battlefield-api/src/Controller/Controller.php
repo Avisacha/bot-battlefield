@@ -39,7 +39,7 @@ abstract class Controller
     {
         $this->getResponse()
             ->addHeader("Access-Control-Allow-Origin", "*")
-            ->addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type")
+            ->addHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Cache-Control")
             ->addHeader("Access-Control-Allow-Methods", "POST, GET");
 
         return $this;

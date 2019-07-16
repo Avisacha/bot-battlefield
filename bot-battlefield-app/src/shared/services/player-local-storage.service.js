@@ -28,7 +28,6 @@ export class PlayerLocalStorageService {
             }
             catch(error){
                 reject(error);
-
             }
         });
     }

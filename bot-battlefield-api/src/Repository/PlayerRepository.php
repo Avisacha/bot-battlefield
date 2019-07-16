@@ -73,11 +73,22 @@ class PlayerRepository implements Repository
         }
     }
 
-
-
     public function findAll(): array
     {
         $sql = "SELECT name FROM player";
+        try {
+            $sth = $this->db->prepare($sql);
+            $sth->execute();
+        } catch (\PDOException $e) {
+            return [];
+        }
+
+        return $sth->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function findByConnected(): array
+    {
+       $sql = "SELECT name FROM player AS p, opponent AS o WHERE p.id = o.player_one_id OR p.id = o.player_two_id";
         try {
             $sth = $this->db->prepare($sql);
             $sth->execute();
