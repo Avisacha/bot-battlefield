@@ -63,27 +63,4 @@ export class DialogComponent extends Component {
         dialogElement.parentNode.removeChild(dialogElement);
     }
 
-    // onError(text) {
-        // const elementTitle = window.document.querySelector("dialog h3");
-        // elementTitle.firstChild.nodeValue = text;
-        
-        // const node = window.document.querySelector("dialog .mdl-grid");
-        // node.parentNode.removeChild(node);
-
-        // const dialogElement = window.document.querySelector("dialog");
-        // const divElement = window.document.createElement("div");
-        // divElement.className = "mdl-dialog__actions";
-        // const formElement = window.document.createElement("form");
-        // formElement.method = "dialog";
-        // const buttonElement = window.document.createElement("button");
-        // buttonElement.type = "submit";
-        // buttonElement.className = "mdl-button";
-        // const textNode = window.document.createTextNode("Close");
-        
-        // dialogElement.appendChild(divElement);
-        // divElement.appendChild(formElement);
-        // formElement.appendChild(buttonElement);
-        // buttonElement.appendChild(textNode);
-    // }
-
 }
