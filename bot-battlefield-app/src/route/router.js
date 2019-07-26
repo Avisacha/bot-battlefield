@@ -2,14 +2,24 @@ import { Route } from "./route";
 
 const routes = [];
 
-export class Router {   
-    static addRoute(url, component, params) {
-        routes.push(new Route(url, component, params));
+routes.push = function () {
+    if (!(arguments[0] instanceof Route)) {
+        throw new TypeError(`Element of "routes" must be an instance of "Route" at index ${routes.length}`);
+    }
+    return Array.prototype.push.apply(this, arguments);
+}
+
+export class Router {
+    static get() {
+        return routes;
+    }
+
+    static addRoute(url, component) {
+        routes.push(new Route(url, component));
         return Router;
     }
 
-    static navigate(url, parameters) {
-        
+    static navigate(url) {
         for (let route of routes) {
             if (route.url === url) {
                 const element = window.document.querySelector("router");
@@ -20,15 +30,12 @@ export class Router {
 
                 const elementBalise = window.document.createElement(route.component.balise);
                 element.appendChild(elementBalise);
-
                 route.component.display();
 
                 return true;
             }
         }
-
         return false;
-
     }
 
 }

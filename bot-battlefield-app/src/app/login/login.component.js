@@ -48,7 +48,6 @@ export class LoginComponent extends Component {
         PlayerService.create(this.nickname.value)
             .then((player) => this.onCreateLoad(player))
             .catch((error) => this.onError(error));
-
     }
 
     onCreateLoad(player) {

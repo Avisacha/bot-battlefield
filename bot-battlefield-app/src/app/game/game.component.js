@@ -1,7 +1,8 @@
-import { Component } from "../../component/component";
+import { Component } from "../../component";
+import html from "./game.component.html";
 
 export class GameComponent extends Component{
     constructor() {
-        super();
+        super(`hame`, html);
     }
 }

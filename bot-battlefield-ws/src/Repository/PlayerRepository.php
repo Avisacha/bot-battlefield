@@ -22,7 +22,7 @@ class PlayerRepository extends ServiceEntityRepository
 
 
     // /**
-    //  * @return Player[] Returns an array of Player objects
+    //  * @return PlayerController[] Returns an array of PlayerController objects
     //  */
     /*
     public function findByExampleField($value)
@@ -39,7 +39,7 @@ class PlayerRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Player
+    public function findOneBySomeField($value): ?PlayerController
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

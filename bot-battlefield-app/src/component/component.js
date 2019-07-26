@@ -1,22 +1,24 @@
 export class Component {
-
-    constructor(balise, html, scss) {
-        this.html = html;
-        this.scss = scss;
-        this.balise = balise;
-
+    constructor(tagName, template) {
+        this.template = template;
+        this.tagName = tagName;
+        
         this.components = [];
+        this.components.push = (elements) => {
+            if (!(elements instanceof Component)) {
+                throw new Error(`Element components must be an instance of "Component" at index ${this.components.length}`);
+            }
+            return Array.prototype.push.apply(this.components, elements);
+        }
     }
 
     display() {
+        const element = window.document.querySelector(this.tagName);
+        element.innerHTML = this.template;
 
-        const element = window.document.querySelector(this.balise);
-        element.innerHTML = this.html;
-
-        for (const iterator of this.components) {
-            iterator.display();
+        for (const component of this.components) {
+            component.display();
         }
-
     }
 
 }

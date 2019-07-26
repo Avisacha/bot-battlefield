@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Controller;
+namespace App\Socket;
 
 use App\Entity\Clients;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,49 +17,27 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 abstract class SocketController extends AbstractController implements MessageComponentInterface
 {
-    private
-        /**
-         * @var array
-         */
-        $clients,
-        /**
-         * @var Logger
-         */
-        $logger,
+    private $clients;
+    private $logger;
 
-        $serializer;
-
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(LoggerInterface $logger)
     {
         $this->clients = [];
-        $this->serializer = $serializer;
-
-        $streamHandler = new StreamHandler(__DIR__ . "/../../var/log/socket.log");
-        $this->logger = new Logger('socket');
-        $this->logger->pushHandler($streamHandler);
+        $this->logger = $logger;
     }
 
-    /**
-     * @return Logger
-     */
-    public function getLogger(): Logger
-    {
-        return $this->logger;
-    }
-
-    /**
-     * @return array
-     */
     public function getClients(): array
     {
         return $this->clients;
     }
 
+    abstract protected function createClient(): ClientInterface;
+
     public function onOpen(ConnectionInterface $conn)
     {
         $this->logger->debug("onOpen");
 
-        $clients = new Clients();
+        $clients = $this->createClient();
         $clients->setConnection($conn);
         $this->clients[] = $clients;
     }
@@ -77,19 +56,8 @@ abstract class SocketController extends AbstractController implements MessageCom
 
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
-        $this->logger->error($e->__toString());
+        $this->logger->error($e->getMessage());
         $conn->close();
-    }
-
-    public function getSerializer(): SerializerInterface
-    {
-        return $this->serializer;
-    }
-
-    protected function jsonEncoder($data, array $group, string $name): string
-    {
-        $json = $this->getSerializer()->serialize($data, "json", ["groups" => $group]);
-        return '{"' . $name . '":' . $json . '}';
     }
 
 }

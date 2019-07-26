@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Socket\ClientInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ratchet\ConnectionInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ClientsRepository")
  */
-class Clients
+class Clients implements ClientInterface
 {
     /**
      * @ORM\Id()
@@ -24,7 +25,6 @@ class Clients
     private $player;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\player")
      * @ORM\JoinColumn(nullable=false)
      */
     private $connection;
@@ -51,15 +51,14 @@ class Clients
         return $this;
     }
 
-    public function getConnection(): ?ConnectionInterface
+    public function getConnection(): ConnectionInterface
     {
         return $this->connection;
     }
 
-    public function setConnection(ConnectionInterface $connection): self
+    public function setConnection(ConnectionInterface $connection): ClientInterface
     {
         $this->connection = $connection;
-
         return $this;
     }
 

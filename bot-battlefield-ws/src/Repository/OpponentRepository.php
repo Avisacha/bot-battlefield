@@ -20,7 +20,7 @@ class OpponentRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Opponent[] Returns an array of Opponent objects
+    //  * @return OpponentController[] Returns an array of OpponentController objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class OpponentRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Opponent
+    public function findOneBySomeField($value): ?OpponentController
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.exampleField = :val')

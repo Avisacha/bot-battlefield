@@ -109,3 +109,6 @@ player-list tbody {
   overflow-y: scroll;
   max-height: 400px; }
 
+game {
+  display: block; }
+

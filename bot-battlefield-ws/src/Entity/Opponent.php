@@ -32,6 +32,12 @@ class Opponent
      */
     private $playerTwo;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Game")
+     * @Groups({"public"})
+     */
+    private $game;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,6 +63,18 @@ class Opponent
     public function setPlayerTwo(Player $playerTwo): self
     {
         $this->playerTwo = $playerTwo;
+
+        return $this;
+    }
+
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setGame(?Game $game): self
+    {
+        $this->game = $game;
 
         return $this;
     }

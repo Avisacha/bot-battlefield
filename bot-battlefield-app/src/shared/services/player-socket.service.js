@@ -20,10 +20,9 @@ export class PlayerSocketService {
             server.onmessage = (e) => {
                 const data = JSON.parse(e.data);
                 callback(data);
-                // console.log(data.players);
-                
-
-                return players = data.players;
+                if (data.players) {
+                    return players = data.players;
+                }
             };
             server.onerror = (e) => {
                 reject(e);

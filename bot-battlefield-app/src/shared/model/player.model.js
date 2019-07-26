@@ -1,9 +1,9 @@
 export class Player {
     constructor() {
-        this.id;
-        this.name;
-        this.token;
-        this.ready;
+        this.id = null;
+        this.name = null;
+        this.token = null;
+        this.ready = null;
     }
     
 }

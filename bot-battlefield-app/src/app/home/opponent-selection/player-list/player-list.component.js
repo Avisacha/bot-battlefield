@@ -1,15 +1,11 @@
 import { Component } from "../../../../component/component";
-import { PlayerService } from "../../../../shared/services/player.service";
 import { PlayerLocalStorageService } from "../../../../shared/services/player-local-storage.service";
 import { DialogComponent } from "../../../shared/dialog.component";
-import { WsBotBattlefield } from "../../../../../../resources/ws.bot-battlefield";
 import { PlayerSocketService } from "../../../../shared/services/player-socket.service";
 import { html } from "./player-list.component.html";
-import { Opponent } from "./../../../../shared/model/opponent.model";
-
 
 export class PlayerListComponent extends Component {
-    constructor() {
+    constructor(onPlay, onOpponent) {
         super(
             `player-list`,
             html
@@ -17,18 +13,27 @@ export class PlayerListComponent extends Component {
         this.dialog = new DialogComponent();
         this.components.push(this.dialog);
         this.playerLocal;
+        this.onPlay = onPlay;
+        this.onOpponent = onOpponent;
     }
 
     display() {
         super.display();
         this.dialog.show();
-        this.dialog.dialogSetTitle("Loading players");
+        this.dialog.setTitle("Loading players");
 
         PlayerLocalStorageService.read()
             .then((playerLocal) => {
                 this.playerLocal = playerLocal;
-                this.dialog.closeDialog();
-                PlayerSocketService.onListen((playerSocket) => this.updateList(playerLocal, playerSocket))
+                this.dialog.close();
+                PlayerSocketService.onListen((playerSocket) => {
+                    if (playerSocket.opponent) {
+                        this.onOpponent(playerSocket.opponent);
+                    }
+                    else {
+                        this.updateList(playerSocket);
+                    }
+                })
                     .then(() => PlayerSocketService.send(playerLocal))
                     .catch((error) => this.onError(error))
             })
@@ -36,15 +41,14 @@ export class PlayerListComponent extends Component {
     }
 
     onError(error) {
-        this.dialog.dialogSetTitle(`On Read Error ${error}`);
-        this.dialog.dialogRemoveSpinner();
-        this.dialog.dialogSetCloseButton();
+        this.dialog.setTitle(`On Read Error ${error}`);
+        this.dialog.removeSpinner();
+        this.dialog.setButton();
     }
 
     selectionSystem(trElement, playerTwo) {
         const button = window.document.querySelector("button");
 
-        // unselect
         if (trElement.className.endsWith("selected")) {
             trElement.classList.remove("selected");
             trElement.removeAttribute("style");
@@ -55,13 +59,11 @@ export class PlayerListComponent extends Component {
 
         const selected = document.getElementsByClassName("selected")[0];
 
-        // switch select
         if (selected) {
             selected.classList.remove("selected");
             selected.removeAttribute("style");
         }
 
-        // select
         trElement.className += " selected";
         trElement.style.backgroundColor = "#65a6ff";
         button.removeAttribute("disabled");
@@ -70,38 +72,7 @@ export class PlayerListComponent extends Component {
         }
     }
 
-    onPlay(playerTwo) {
-        const opponent = new Opponent;
-        opponent.playerOne = this.playerLocal;
-        opponent.playerTwo = playerTwo;
-
-        console.log(opponent);
-
-        PlayerSocketService.send(opponent);
-
-        this.dialog.show();
-        this.dialog.dialogSetTitle("Hello");
-        this.dialog.dialogRemoveSpinner();
-        this.dialog.dialogSetCloseButton("Cancel");
-    }
-
-    updateList(playerLocalStorage, playerSocket) {
-        // if (playerSocket) {
-        //     this.removeItemList(playerSocket.player.id);
-        //     return;
-        // }
-
-        // console.log(playerSocket.players);
-
-
-        // console.log(PlayerSocketService.getPlayers());
-        // console.log(playerSocket.players);
-
-        // console.log("server");
-        // console.log(playerSocket.players);
-        // console.log("service");
-        // console.log(PlayerSocketService.getPlayers());
-
+    updateList(playerSocket) {
         for (const player of playerSocket.players) {
             if (this.playerLocal.id !== player.id) {
                 const found = PlayerSocketService.getPlayers().find((value) => {
@@ -123,25 +94,7 @@ export class PlayerListComponent extends Component {
                 }
             }
         }
-
-
-
-        // this.addItemList(playerSocket.players[playerSocket.players.length - 1]);
-
-
-        // for (const player of playerSocket.players) {
-
-        // }
-
-        // for (const player of playerSocket.players) {
-        //     if (player.id !== playerLocalStorage.id
-        //         && !PlayerSocketService.getPlayers().find(
-        //             (value) => value.id === player.id)) {
-        //         this.addItemList(player);
-        //     }
-        // }
     }
-
 
     addItemList(player) {
         const tBodyElement = window.document.querySelector("table tbody");

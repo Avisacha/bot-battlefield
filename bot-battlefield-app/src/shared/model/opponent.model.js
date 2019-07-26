@@ -1,8 +1,9 @@
 export class Opponent {
     constructor() {
-        this.id;
-        this.playerOne;
-        this.playerTwo;
+        this.id = null;
+        this.playerOne = null;
+        this.playerTwo = null;
+        this.game = null;
     }
     
 }
